@@ -26,3 +26,6 @@ isa-l.h
 /libisal.la
 libisal.pc
 programs/igzip
+
+.vscode
+output/
