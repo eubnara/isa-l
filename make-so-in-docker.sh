@@ -23,12 +23,14 @@ if [[ "$?" != "0" ]];then
   exit 1
 fi
 
-mkdir ./output
 
 ISAL_VERSION=2.30.0
+mkdir ./output
 
 docker run --rm -it \
   -v "`pwd`/output:/output" \
   -w "/output" \
   "${IMAGE_NAME}" \
-  bash -c "cd /isa-l && git checkout tags/v${ISAL_VERSION} && ./autogen.sh && ./configure && make && cp ./.libs/* /output"
+  bash -c "cd /isa-l && git checkout tags/v${ISAL_VERSION} && ./autogen.sh \
+    && ./configure --prefix=/usr --libdir=/usr/lib64 \
+    && make && cp ./.libs/* /output"
